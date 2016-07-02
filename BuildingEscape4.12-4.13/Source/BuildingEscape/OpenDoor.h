@@ -29,14 +29,18 @@ public:
 //My addition below private:
 private:
     
+    float ClosedAngle = 0.0f;
+    
+    float OpenedAngle = -90.f;
+    
     UPROPERTY(EditAnywhere)
-    float OpenAngle = -90.0f;
+    float OpenAngle = 0.0f;
     
     UPROPERTY(EditAnywhere)
     ATriggerVolume* PressurePlate;
     
     UPROPERTY(EditAnywhere)
-    float DoorCloseDelay = 1.f;
+    float DoorCloseDelay = 1.f; //here it simply does nothing since I made myself smooth animation of door opening and closing
     
     float LastDoorOpenTime; //this is private var WITHOUR UPROPERTY!!!
     

@@ -43,10 +43,10 @@ void UGrabber::BeginPlay()
         UE_LOG(LogTemp, Warning, TEXT("InputComponent for %s found!"), *GetOwner()->GetName());
         ///Bind input axis
         InputComponent->BindAction(
-            "Grab",
-            IE_Pressed,
-            this,
-            &UGrabber::Grab
+            "Grab", //attention here must be the same name "Grab" as in ProjectSettings->Engine->Input->ActionMappings "Grab"! Otherwise it will not react on your pressing buttons
+            IE_Pressed, // action on when the button is pressed
+            this, // this means this object (Grabber)
+            &UGrabber::Grab // method witch performe some actions
         );
     }
     else
