@@ -52,7 +52,6 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
         {
         OpenDoor(); //open door every frame
         }
-        //LastDoorOpenTime = GetWorld()->GetTimeSeconds();
     }
     else
     {
@@ -63,14 +62,6 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
         }
     }
     
-    //check if it is time to close the door
-//    if(GetWorld()->GetTimeSeconds() > LastDoorOpenTime + DoorCloseDelay)
-//    {
-//        if(OpenAngle != CloseAngle)
-//        {
-//        CloseDoor();
-//        }
-//    }
 }
     
 
