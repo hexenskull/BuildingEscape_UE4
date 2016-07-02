@@ -8,12 +8,12 @@
 */Saved
 BuildingEscape4.12-4.13/Content/StarterContent/Textures
 BuildingEscape4.12-4.13/Content/StarterContent/HDRI
+BuildingEscape4.12-4.13/.idea
 
 ######################
 # VS Generated Files #
 ######################
 *.VC.db
 *.suo
-BuildingEscape4.12-4.13/BuildingEscape.VC.VC.opendb
 *.VC.opendb
 *.sln
