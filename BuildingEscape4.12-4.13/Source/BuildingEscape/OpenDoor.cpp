@@ -3,6 +3,8 @@
 #include "BuildingEscape.h"
 #include "OpenDoor.h"
 
+#define OUT
+
 
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
@@ -21,8 +23,6 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();
     
     Owner = GetOwner();
-    
-    ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 void UOpenDoor::OpenDoor()
@@ -44,10 +44,9 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
-	// Poll the TriggerVolume
-    if(PressurePlate->IsOverlappingActor(ActorThatOpens))
+    //Poll trigger volume
+    if(GetTotalMassOfActorsOnPlate() > 50.f) //TODO make into parameter
     {
-        //OpenAngle = -90.0f;
         if(OpenAngle != OpenedAngle)
         {
         OpenDoor(); //open door every frame
@@ -55,7 +54,6 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
     }
     else
     {
-        //CloseAngle = 0.0f;
         if(ClosedAngle != OpenAngle)
         {
             CloseDoor();
@@ -63,5 +61,18 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
     }
     
 }
-    
 
+
+float UOpenDoor::GetTotalMassOfActorsOnPlate()
+{
+    float TotalMass = 0.f;
+    
+    //Find all overlapping actors
+    TArray<AActor*> OverlappingActors;
+    PressurePlate->GetOverlappingActors(OUT OverlappingActors); // this is an OUT parameter after passing empty array to this GetOverlappingActors function and it becomes not empy! (it fillse with overlapping actors!)
+    
+    //Iterate through them adding their masses
+    
+    
+    return TotalMass;
+}
