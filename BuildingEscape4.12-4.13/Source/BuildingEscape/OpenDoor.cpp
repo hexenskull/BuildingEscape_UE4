@@ -45,7 +45,7 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
 
     //Poll trigger volume
-    if(GetTotalMassOfActorsOnPlate() > 50.f) //TODO make into parameter
+    if(GetTotalMassOfActorsOnPlate() > 30.f) //TODO make into parameter
     {
         if(OpenAngle != OpenedAngle)
         {
@@ -72,6 +72,12 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
     PressurePlate->GetOverlappingActors(OUT OverlappingActors); // this is an OUT parameter after passing empty array to this GetOverlappingActors function and it becomes not empy! (it fillse with overlapping actors!)
     
     //Iterate through them adding their masses
+    
+    for (const auto& Actor : OverlappingActors)
+    {
+        TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
+    }
+    
     
     
     return TotalMass;
