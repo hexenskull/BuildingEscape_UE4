@@ -37,14 +37,15 @@ private:
     float OpenAngle = 0.0f;
     
     UPROPERTY(EditAnywhere)
-    ATriggerVolume* PressurePlate;
+    ATriggerVolume* PressurePlate = nullptr;
     
     UPROPERTY(EditAnywhere)
     float DoorCloseDelay = 1.f; //here it simply does nothing since I made myself smooth animation of door opening and closing
     
     float LastDoorOpenTime; //this is private var WITHOUR UPROPERTY!!!
     
-    AActor* Owner; //the owning door
+    //the owning door
+    AActor* Owner = nullptr;
     
     //Returns total mass in kg
     float GetTotalMassOfActorsOnPlate();

@@ -23,6 +23,12 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();
     
     Owner = GetOwner();
+    
+    if (!PressurePlate)
+    {
+        UE_LOG(LogTemp, Error, TEXT("%s missing pressure plate"), *GetOwner()->GetName());
+        
+    }
 }
 
 void UOpenDoor::OpenDoor()
@@ -69,6 +75,7 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
     
     //Find all overlapping actors
     TArray<AActor*> OverlappingActors;
+    if (!PressurePlate) { return TotalMass; }
     PressurePlate->GetOverlappingActors(OUT OverlappingActors); // this is an OUT parameter after passing empty array to this GetOverlappingActors function and it becomes not empy! (it fillse with overlapping actors!)
     
     //Iterate through them adding their masses
