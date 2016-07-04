@@ -1,4 +1,4 @@
-// Copyright Paul Buidenkov 2016
+// Copyright Ben Tristem 2016.
 
 #pragma once
 
@@ -9,44 +9,37 @@
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 {
-	GENERATED_BODY()
-
-public:	
-	// Sets default values for this component's properties
-	UOpenDoor();
-
-	// Called when the game starts
-	virtual void BeginPlay() override;
-	
-	// Called every frame
-	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
+    GENERATED_BODY()
     
-    //my OpenDoor method declaration
+public:
+    // Sets default values for this component's properties
+    UOpenDoor();
+    
+    // Called when the game starts
+    virtual void BeginPlay() override;
+    
     void OpenDoor();
     void CloseDoor();
-
     
-//My addition below private:
+    // Called every frame
+    virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
+    
+    
 private:
-    
-    float ClosedAngle = 0.0f;
-    
-    float OpenedAngle = -90.f;
-    
     UPROPERTY(EditAnywhere)
-    float OpenAngle = 0.0f;
+    float OpenAngle = -90.0f;
     
     UPROPERTY(EditAnywhere)
     ATriggerVolume* PressurePlate = nullptr;
     
     UPROPERTY(EditAnywhere)
-    float DoorCloseDelay = 1.f; //here it simply does nothing since I made myself smooth animation of door opening and closing
+    float DoorCloseDelay = 1.f;
     
-    float LastDoorOpenTime; //this is private var WITHOUR UPROPERTY!!!
+    float LastDoorOpenTime;
     
-    //the owning door
+    // The owning door
     AActor* Owner = nullptr;
     
-    //Returns total mass in kg
+    // Returns total mass in kg
     float GetTotalMassOfActorsOnPlate();
 };
